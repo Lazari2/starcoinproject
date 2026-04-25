@@ -1,9 +1,9 @@
 from app import create_app, db
 from app.models.user import User
 from app.models.memberProfile import MemberProfile
-from backend.app.models.conta import Conta
-from backend.app.models.despesas import Despesas
-from backend.app.models.receitas import Receitas
+from app.models.conta import Conta
+from app.models.despesas import Despesas
+from app.models.receitas import Receitas
 
 app = create_app()
 

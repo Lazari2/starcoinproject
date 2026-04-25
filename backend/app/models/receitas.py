@@ -8,10 +8,10 @@ class Receitas(db.Model):
 
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     descricao = db.Column(db.String(100), unique=True, nullable=True)
-    valor= db.column(db.float, nullable= False)
-    data = db.column(db.data, nullable = False)
+    valor= db.Column(db.Float, nullable= False)
+    data = db.Column(db.Date, nullable = False)
     id_categoria = db.Column(UUID(as_uuid=True), db.ForeignKey('categoria.id'))
-    id_conta = db.column(UUID(as_uuid =True), db.ForeignKey('conta.id'))
+    id_conta = db.Column(UUID(as_uuid =True), db.ForeignKey('conta.id'))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 

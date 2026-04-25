@@ -3,7 +3,7 @@ version: '3.8'
 services:
   db:
     image: postgres:15-alpine
-    container_name: smart_gym_db
+    container_name: starcoin_db
     restart: always
 
     environment:
@@ -12,11 +12,11 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
   
     ports:
-      - "5432:5432"
+      - "5433:5432"
       
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data_starcoin:/var/lib/postgresql/data
 
 volumes:
-  postgres_data:
+  postgres_data_starcoin:
     driver: local
