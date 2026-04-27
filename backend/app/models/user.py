@@ -13,6 +13,13 @@ class User(db.Model):
     password_hash = db.Column(db.String(256), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
+    categorias = db.relationship('Categoria', backref='user', lazy='dynamic')
+    contas = db.relationship('Conta', backref='user', lazy='dynamic')
+    receitas = db.relationship('Receitas', backref='user', lazy='dynamic')
+    despesas = db.relationship('Despesas', backref='user', lazy='dynamic')
+    metas = db.relationship('Meta', backref='user', lazy='dynamic')
+    limites = db.relationship('LimiteCategoria', backref='user', lazy='dynamic')
+
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 

@@ -5,3 +5,8 @@ flask db migrate -m "commit da migração"
 flask db upgrade -> (atualiza o banco)
 
 flask db downgrade -> (reverte o estado para o da ultima migração)
+
+cd backend && pip install -r requirements.txt
+docker-compose up -d (subir Postgres)
+flask db migrate -m "initial" + flask db upgrade
+python run.py

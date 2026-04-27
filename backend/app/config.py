@@ -8,7 +8,7 @@ class Config:
     DB_USER = os.getenv('POSTGRES_USER')
     DB_PASSWORD = os.getenv('POSTGRES_PASSWORD')
     DB_HOST = 'localhost' 
-    DB_PORT = '5432'
+    DB_PORT = '5433'
     DB_NAME = os.getenv('POSTGRES_DB')
 
     SQLALCHEMY_DATABASE_URI = (
@@ -16,3 +16,5 @@ class Config:
     )
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', 'fallback-secret-key')
