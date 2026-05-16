@@ -9,22 +9,21 @@ db = SQLAlchemy()
 jwt = JWTManager()
 migrate = Migrate()
 
-def create_app(): 
+def create_app():
     app = Flask(__name__)
-    app.config.from_object('app.config.Config') 
-    
+    app.config.from_object('app.config.Config')
+
     db.init_app(app)
-    jwt.init_app(app) 
+    jwt.init_app(app)
     migrate.init_app(app, db)
+
     cors_origins = os.getenv('CORS_ORIGINS', '*')
     CORS(app, origins=[o.strip() for o in cors_origins.split(',')])
-    
+
     with app.app_context():
-        # Import models para o migrate detectar
         from app.models import User, Categoria, Conta, Despesas, Receitas, Meta, LimiteCategoria
         from app.models.memberProfile import MemberProfile
 
-        # Import e registro dos Blueprints
         from .routes.auth_routes import auth_bp
         from .routes.categoria_routes import categoria_bp
         from .routes.conta_routes import conta_bp
