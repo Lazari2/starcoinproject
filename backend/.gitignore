@@ -17,7 +17,6 @@ dist/
 instance/
 .webassets-cache
 
-migrations/versions/
 
 .vscode/
 .idea/
@@ -28,3 +27,5 @@ migrations/versions/
 Thumbs.db
 
 node_modules
+test_conn.py
+migration.md
