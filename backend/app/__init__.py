@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -15,11 +16,13 @@ def create_app():
     db.init_app(app)
     jwt.init_app(app) 
     migrate.init_app(app, db)
-    CORS(app)
+    cors_origins = os.getenv('CORS_ORIGINS', '*')
+    CORS(app, origins=[o.strip() for o in cors_origins.split(',')])
     
     with app.app_context():
         # Import models para o migrate detectar
         from app.models import User, Categoria, Conta, Despesas, Receitas, Meta, LimiteCategoria
+        from app.models.memberProfile import MemberProfile
 
         # Import e registro dos Blueprints
         from .routes.auth_routes import auth_bp

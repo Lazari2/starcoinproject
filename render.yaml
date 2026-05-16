@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: starcoinproject-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET_KEY
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false
+      - key: FLASK_DEBUG
+        value: false
+      - key: FLASK_APP
+        value: run.py

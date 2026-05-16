@@ -5,14 +5,15 @@ load_dotenv()
 
 class Config:
 
-    DB_USER = os.getenv('POSTGRES_USER')
-    DB_PASSWORD = os.getenv('POSTGRES_PASSWORD')
-    DB_HOST = os.getenv('POSTGRES_HOST', 'localhost')
-    DB_PORT = os.getenv('POSTGRES_PORT', '5433')
-    DB_NAME = os.getenv('POSTGRES_DB')
-
-    SQLALCHEMY_DATABASE_URI = (
-        f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    SQLALCHEMY_DATABASE_URI = os.getenv(
+        'DATABASE_URL',
+        "postgresql+psycopg2://{user}:{pw}@{host}:{port}/{db}".format(
+            user=os.getenv('POSTGRES_USER'),
+            pw=os.getenv('POSTGRES_PASSWORD'),
+            host=os.getenv('POSTGRES_HOST', 'localhost'),
+            port=os.getenv('POSTGRES_PORT', '5432'),
+            db=os.getenv('POSTGRES_DB'),
+        )
     )
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
