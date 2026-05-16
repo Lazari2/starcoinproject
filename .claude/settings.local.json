@@ -7,7 +7,15 @@
       "Bash(Remove-Item \"d:\\\\01 Projetos\\\\Star Coin Manager\\\\frontend\\\\src\\\\integrations\\\\supabase\\\\types.ts\" -Force)",
       "Bash(Remove-Item \"d:\\\\01 Projetos\\\\Star Coin Manager\\\\frontend\\\\src\\\\integrations\\\\lovable\\\\index.ts\" -Force)",
       "Bash(Remove-Item \"d:\\\\01 Projetos\\\\Star Coin Manager\\\\frontend\\\\src\\\\components\\\\auth\\\\SocialLoginButtons.tsx\" -Force)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(Get-ChildItem -Path \"d:\\\\01 Projetos\\\\starcoinproject\" -Force)",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "Bash(Format-Table -AutoSize)",
+      "Bash(python -c \"import psycopg2; conn = psycopg2.connect\\('postgresql://neondb_owner:npg_KzYet0P7vAcf@ep-summer-art-aq2dvkyd.c-8.us-east-1.aws.neon.tech/neondb?sslmode=require'\\); print\\('Conexao OK:', conn.server_version\\); conn.close\\(\\)\")",
+      "Bash(python -c ' *)",
+      "Bash(python seed.py)",
+      "Bash(python -m flask db upgrade)",
+      "Bash(python -m flask db migrate -m \"add member_profile\")"
     ]
   }
 }
