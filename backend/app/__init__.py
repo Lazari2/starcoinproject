@@ -33,6 +33,7 @@ def create_app():
         from .routes.limite_routes import limite_bp
         from .routes.dashboard_routes import dashboard_bp
         from .routes.backup_routes import backup_bp
+        from .routes.health_routes import health_bp
 
         app.register_blueprint(auth_bp)
         app.register_blueprint(categoria_bp)
@@ -43,5 +44,6 @@ def create_app():
         app.register_blueprint(limite_bp)
         app.register_blueprint(dashboard_bp)
         app.register_blueprint(backup_bp)
+        app.register_blueprint(health_bp)
 
     return app
