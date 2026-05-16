@@ -11,15 +11,15 @@ def register():
     if not data or not all(k in data for k in ('username', 'email', 'password', 'confirm_password')):
         return jsonify({'error': 'Missing required fields'}), 400
     try:
-        user = AuthService.register_user(
+        user, token = AuthService.register_user(
             username=data['username'],
             email=data['email'],
             password=data['password'],
             confirm_password=data['confirm_password']
         )
         return jsonify({
-            "message": "User created successfully", 
-            "user": user.to_dict() 
+            "access_token": token,
+            "user": user.to_dict()
         }), 201
     except AppError as e:
         return jsonify({"error": e.message}), e.status_code
@@ -32,11 +32,11 @@ def login():
     if not data or 'email' not in data or 'password' not in data:
         return jsonify({'error': 'Missing required fields: email, password'}), 400
     try:
-        token = AuthService.login_user(
+        token, user = AuthService.login_user(
             email=data['email'],
             password=data['password']
         )
-        return jsonify({"access_token": token}), 200
+        return jsonify({"access_token": token, "user": user.to_dict()}), 200
     except ValueError as e:
         return jsonify({"error": str(e)}), 401
 

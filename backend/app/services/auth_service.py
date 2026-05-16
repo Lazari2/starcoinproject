@@ -27,13 +27,14 @@ class AuthService:
             print(f"Erro ao registrar usuário: {e}")
             raise AppError("Erro ao criar conta.", 500)
             
-        return user
+        token = generate_jwt(str(user.id))
+        return user, token
 
     @staticmethod
     def login_user(email, password):
         user = User.query.filter_by(email=email).first()
         if not user or not user.check_password(password):
-            raise ValueError("Invalid email or password.")
+            raise ValueError("E-mail ou senha incorretos.")
 
         token = generate_jwt(str(user.id))
-        return token
+        return token, user
