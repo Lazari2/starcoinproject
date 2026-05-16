@@ -1,6 +1,7 @@
 services:
   - type: web
     name: starcoinproject-api
+    plan: hobby
     runtime: docker
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
@@ -15,6 +16,9 @@ services:
         value: false
       - key: FLASK_APP
         value: run.py
+      - key: WEB_CONCURRENCY
+        value: 2
+    healthCheckPath: /health
 
   - type: static
     name: starcoinproject-frontend

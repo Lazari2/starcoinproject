@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from app.services.auth_service import AuthService
 from app.utils.exceptions import AppError
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from app import db
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/api/auth')
 
@@ -45,7 +46,7 @@ def login():
 def get_profile():
     user_id = get_jwt_identity()
     from app.models.user import User
-    user = User.query.get(user_id)
+    user = db.session.get(User, user_id)
     if not user:
         return jsonify({"error": "Usuário não encontrado"}), 404
     return jsonify({"user": user.to_dict()}), 200

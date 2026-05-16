@@ -1,5 +1,4 @@
 {
-  "dependencies": {
-    "docker": "^1.0.0"
-  }
+  "private": true,
+  "description": "Backend Flask — arquivo mantido apenas por compatibilidade de tooling. Não é um projeto Node."
 }

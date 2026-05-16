@@ -14,4 +14,7 @@ if _db_url.startswith('postgresql://'):
 class Config:
     SQLALCHEMY_DATABASE_URI = _db_url
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', 'fallback-secret-key')
+    _jwt_secret = os.getenv('JWT_SECRET_KEY')
+    if not _jwt_secret:
+        raise RuntimeError("JWT_SECRET_KEY nao configurada. Defina a variavel de ambiente JWT_SECRET_KEY.")
+    JWT_SECRET_KEY = _jwt_secret

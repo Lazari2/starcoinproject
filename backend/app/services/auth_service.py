@@ -1,8 +1,11 @@
+import logging
 from app import db
 from app.models.user import User
 from app.utils.jwt_utils import generate_jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.utils.exceptions import AppError, UserAlreadyExistsError, InvalidCredentialsError
+
+logger = logging.getLogger(__name__)
 
 class AuthService:
 
@@ -24,7 +27,7 @@ class AuthService:
             db.session.commit()
         except Exception as e:
             db.session.rollback()
-            print(f"Erro ao registrar usuário: {e}")
+            logger.error("Erro ao registrar usuário: %s", e)
             raise AppError("Erro ao criar conta.", 500)
             
         token = generate_jwt(str(user.id))
