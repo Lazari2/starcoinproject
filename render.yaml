@@ -15,3 +15,15 @@ services:
         value: false
       - key: FLASK_APP
         value: run.py
+
+  - type: static
+    name: starcoinproject-frontend
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
